@@ -128,7 +128,7 @@
                                     <segment title="20%"/>
                                 </segments>
                                 <connections>
-                                    <action selector="setDefaultTip:" destination="W0r-gx-Z2O" eventType="valueChanged" id="Vn4-bE-Dac"/>
+                                    <action selector="tipSelected:" destination="W0r-gx-Z2O" eventType="valueChanged" id="UD9-z2-xeX"/>
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Default tip percent:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJx-fQ-yMj">

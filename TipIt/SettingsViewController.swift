@@ -12,8 +12,11 @@ class SettingsViewController: UIViewController {
 
     @IBOutlet weak var tipControl: UISegmentedControl!
     let defaults = UserDefaults.standard
+    var seconds = 60
+    var timer = Timer()
+    var timerOn = false
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,26 +25,55 @@ class SettingsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if(UserDefaults.standard.object(forKey: "tipDefaultIndex") == nil){
-            tipControl.selectedSegmentIndex = 0
-        } else {
+            resetDefaultTip()
             tipControl.selectedSegmentIndex = defaults.integer(forKey: "tipDefaultIndex")
-        }
+
     }
     
-    @IBAction func setDefaultTip(_ sender: Any) {
+    // sync default for tip
+    func syncDefaultTip() {
         defaults.set(tipControl.selectedSegmentIndex, forKey: "tipDefaultIndex")
         defaults.synchronize()
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // reset selectedSegmentIndex for tip, sync
+    func resetDefaultTip() {
+        tipControl.selectedSegmentIndex = 0
+        syncDefaultTip()
     }
-    */
-
+    
+    // triggered by selecting a new segment index. Sync, then countdown
+    
+    
+    
+    @IBAction func tipSelected(_ sender: UISegmentedControl) {
+        syncDefaultTip()
+        if(timerOn){
+            resetTimer()
+        }
+        startTimer()
+    }
+    
+    func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(SettingsViewController.updateTimer)), userInfo: nil, repeats: true)
+        timerOn = true
+    }
+    
+    @objc func updateTimer() {
+        if(seconds <= 0){
+            resetTimer()
+            resetDefaultTip()
+        } else {
+            seconds -= 1
+        }
+        print(String(seconds) + " ")
+    }
+    
+    func resetTimer() {
+        timer.invalidate()
+        seconds = 60
+        timerOn = false
+    }
+    
 }
+

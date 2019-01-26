@@ -25,7 +25,6 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        totalLabel.text = "hello" + String(defaults.integer(forKey: "tipDefaultIndex"))
         tipControl.selectedSegmentIndex = defaults.integer(forKey: "tipDefaultIndex")
     }
 
