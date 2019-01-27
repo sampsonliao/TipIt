@@ -16,18 +16,32 @@ class SettingsViewController: UIViewController {
     var timer = Timer()
     var timerOn = false
     
+    @IBOutlet weak var defaultTipLabel: UILabel!
+    
+    @IBOutlet weak var appearanceLabel: UILabel!
+    
+    
+    @IBOutlet weak var darkModeLabel: UILabel!
+    
+    
+    @IBOutlet var mainView: UIView!
+    @IBOutlet weak var defaultTipView: UIView!
+    @IBOutlet weak var appearanceView: UIView!
+    
+    @IBOutlet weak var darkModeSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        defaultTipView.backgroundColor = CustomColor.Light.LabelShade
+        appearanceView.backgroundColor = CustomColor.Light.LabelShade
         // Do any additional setup after loading the view.
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-            resetDefaultTip()
-            tipControl.selectedSegmentIndex = defaults.integer(forKey: "tipDefaultIndex")
-
+        setBackgroundColor()
+        tipControl.selectedSegmentIndex = defaults.integer(forKey: "tipDefaultIndex")
+        
     }
     
     // sync default for tip
@@ -60,13 +74,12 @@ class SettingsViewController: UIViewController {
     }
     
     @objc func updateTimer() {
-        if(seconds <= 0){
+        if(seconds < 0){
             resetTimer()
             resetDefaultTip()
         } else {
             seconds -= 1
         }
-        print(String(seconds) + " ")
     }
     
     func resetTimer() {
@@ -75,5 +88,44 @@ class SettingsViewController: UIViewController {
         timerOn = false
     }
     
+    func setBackgroundColor() {
+        if(defaults.bool(forKey: "darkMode")){
+            darkModeSwitch.setOn(true, animated: true)
+            setDarkColors()
+        } else {
+            darkModeSwitch.setOn(false, animated: true)
+            setDefaultColors()
+        }
+    }
+    
+    
+    @IBAction func darkModeOn(_ sender: UISwitch) {
+        defaults.set(sender.isOn, forKey: "darkMode")
+        setBackgroundColor()
+    }
+    
+    func setDefaultColors() {
+        defaultTipLabel.textColor = UIColor.black
+        appearanceLabel.textColor = UIColor.black
+        darkModeLabel.textColor = UIColor.black
+        
+        mainView.backgroundColor = UIColor.white
+        defaultTipView.backgroundColor = CustomColor.Light.LabelShade
+        appearanceView.backgroundColor = CustomColor.Light.LabelShade
+    }
+    
+    func setDarkColors() {
+        defaultTipLabel.textColor = UIColor.white
+        appearanceLabel.textColor = UIColor.white
+        darkModeLabel.textColor = UIColor.white
+        
+        mainView.backgroundColor = CustomColor.Dark.Background
+        defaultTipView.backgroundColor = CustomColor.Dark.LabelShade
+        appearanceView.backgroundColor = CustomColor.Dark.LabelShade
+    }
+    
 }
+
+
+
 
