@@ -12,7 +12,7 @@ class SettingsViewController: UIViewController {
 
     @IBOutlet weak var tipControl: UISegmentedControl!
     let defaults = UserDefaults.standard
-    var seconds = 60
+    var seconds = 300
     var timer = Timer()
     var timerOn = false
     
@@ -84,7 +84,7 @@ class SettingsViewController: UIViewController {
     
     func resetTimer() {
         timer.invalidate()
-        seconds = 60
+        seconds = 300
         timerOn = false
     }
     

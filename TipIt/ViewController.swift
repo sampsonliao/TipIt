@@ -16,14 +16,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipControl: UISegmentedControl!
     
     
+    @IBOutlet weak var equalsLabel: UILabel!
+    @IBOutlet weak var plusLabel: UILabel!
+    
     @IBOutlet var mainView: UIView!
-    
-    @IBOutlet weak var billLabel: UILabel!
-    
-    
-    @IBOutlet weak var tipLabelLabel: UILabel!
-    
-    @IBOutlet weak var totalLabelLabel: UILabel!
+        
     
     let defaults = UserDefaults.standard
     
@@ -42,6 +39,8 @@ class ViewController: UIViewController {
             setDefaultColors()
         }
         tipControl.selectedSegmentIndex = defaults.integer(forKey: "tipDefaultIndex")
+        
+        
     }
 
     @IBAction func onTap(_ sender: Any) {
@@ -63,28 +62,24 @@ class ViewController: UIViewController {
     }
     
     func setDefaultColors() {
-        billLabel.textColor = UIColor.black
-        tipLabelLabel.textColor = UIColor.black
-        totalLabelLabel.textColor = UIColor.black
-        
         billField.backgroundColor = UIColor.white
         billField.textColor = UIColor.black
         tipLabel.textColor = UIColor.black
         totalLabel.textColor = UIColor.black
+        plusLabel.textColor = UIColor.black
+        equalsLabel.textColor = UIColor.black
         
         billField.keyboardAppearance = .light
         mainView.backgroundColor = UIColor.white
     }
     
-    func setDarkColors() {
-        billLabel.textColor = UIColor.white
-        tipLabelLabel.textColor = UIColor.white
-        totalLabelLabel.textColor = UIColor.white
-        
+    func setDarkColors() {        
         billField.backgroundColor = CustomColor.Dark.LabelShade
         billField.textColor = UIColor.white
         tipLabel.textColor = UIColor.white
         totalLabel.textColor = UIColor.white
+        plusLabel.textColor = UIColor.white
+        equalsLabel.textColor = UIColor.white
         
         billField.keyboardAppearance = .dark
         mainView.backgroundColor = CustomColor.Dark.Background
