@@ -32,6 +32,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         defaults.set(0, forKey: "tipDefaultIndex")
         defaults.synchronize()
+        billField.becomeFirstResponder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,6 +72,7 @@ class ViewController: UIViewController {
         tipLabel.textColor = UIColor.black
         totalLabel.textColor = UIColor.black
         
+        billField.keyboardAppearance = .light
         mainView.backgroundColor = UIColor.white
     }
     
@@ -84,6 +86,7 @@ class ViewController: UIViewController {
         tipLabel.textColor = UIColor.white
         totalLabel.textColor = UIColor.white
         
+        billField.keyboardAppearance = .dark
         mainView.backgroundColor = CustomColor.Dark.Background
     }
 }
