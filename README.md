@@ -4,7 +4,7 @@ TipIt is a tip calculator application for iOS.
 
 Submitted by: Sampson Liao
 
-Time spent: 5 hours spent in total
+Time spent: 10 hours spent in total
 
 ## User Stories
 
@@ -21,7 +21,8 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [x] Dark Mode
+- [x] Dark mode
+- [x] Default tip remains for 5 min
 
 ## Video Walkthrough 
 
